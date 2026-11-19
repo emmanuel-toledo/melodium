@@ -1,0 +1,7 @@
+dist
+coverage
+.firebase
+.husky/_
+.opencode
+pnpm-lock.yaml
+skills-lock.json
