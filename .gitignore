@@ -122,6 +122,17 @@ dist
 # Firebase cache directory
 .firebase/
 
+# Firebase emulator logs
+.firebase-debug.log
+*firestore-debug.log
+firebase-debug.log
+ui-debug.log
+
+# Local agent skills that are installed from external sources
+.opencode/skills/apple-design/
+.opencode/skills/frontend-design/
+.opencode/skills/ui-ux-pro-max/
+
 # TernJS port file
 .tern-port
 
