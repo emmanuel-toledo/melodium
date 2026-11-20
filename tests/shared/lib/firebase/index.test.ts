@@ -27,6 +27,7 @@ const mocks = vi.hoisted(() => ({
   signInWithPopup: vi.fn(),
   signOut: vi.fn(),
   updateDoc: vi.fn(),
+  updateProfile: vi.fn(),
   where: vi.fn(),
   writeBatch: vi.fn(),
 }));
@@ -46,6 +47,7 @@ vi.mock('firebase/auth', () => ({
   signInWithEmailAndPassword: mocks.signInWithEmailAndPassword,
   signInWithPopup: mocks.signInWithPopup,
   signOut: mocks.signOut,
+  updateProfile: mocks.updateProfile,
 }));
 
 vi.mock('firebase/firestore', () => ({
@@ -159,6 +161,7 @@ describe('firebase facade', () => {
         'serverTimestamp',
         'Timestamp',
         'writeBatch',
+        'updateProfile',
       ]),
     );
   });
