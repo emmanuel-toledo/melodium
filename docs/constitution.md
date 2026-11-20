@@ -1,8 +1,8 @@
 # Melodium Constitution
 
 Status: Approved
-Version: 1.0
-Last updated: 2026-11-18
+Version: 1.1
+Last updated: 2026-11-19
 
 This document defines the non-negotiable principles for Melodium. Specs, skills, reviews and implementation must comply with it. If two sources conflict, stop and resolve the conflict before writing code.
 
@@ -134,8 +134,10 @@ A composition stores its title, optional metadata, tags, `instrument`, ChordPro 
 - TypeScript strict mode. No `any`; use `unknown` and narrow.
 - ESLint and Prettier are mandatory; rules are not disabled to make a change pass.
 - Tests use Vitest and React Testing Library. Firestore rules use the emulators and `@firebase/rules-unit-testing`.
-- Unit and component tests live next to the code. Rules tests live in `tests/rules/`.
-- Tests never depend on the network or a real Firebase project. Unit tests mock `@/shared/lib/firebase`.
+- Application tests live under `tests/`, grouped by layer and feature and mirroring the `src/` path. No `*.test.ts(x)` file lives under `src/`.
+- Firestore rules tests live under `tests/firestore-rules/`. Tooling tests live next to the script they test.
+- `tests/setup.ts` is the only global setup file.
+- Tests never depend on the network or a real Firebase project. Application tests mock `@/shared/lib/firebase`.
 - Critical behavior must have tests: ChordPro parsing, transposition, Zod schemas, composition CRUD, setlists and ownership rules.
 - A change is not done while its critical tests are missing or failing.
 - Do not delete, skip or weaken a failing test to make a change pass.
@@ -171,3 +173,10 @@ Specify -> Plan -> Tasks -> Implement
 - An agent must not approve its own effect or add an approval row without the owner's explicit approval.
 - Amendments to this constitution require explicit owner approval, a version bump and an updated date.
 - When a rule becomes obsolete, remove it through an approved amendment instead of ignoring it.
+
+## 10. Amendment history
+
+| Version | Date       | Change                                                                                                                                                    |
+| ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.1     | 2026-11-19 | Application tests move under `tests/`, mirroring `src/`; Firestore rules tests move to `tests/firestore-rules/`; tooling tests stay next to their script. |
+| 1.0     | 2026-11-18 | Initial constitution.                                                                                                                                     |

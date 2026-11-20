@@ -1,5 +1,5 @@
 ---
-name: Melodium React
+name: melodium-react
 description: Use when writing or reviewing React components, hooks, state, effects, data subscriptions, forms, or UI in Melodium, especially before adding useEffect, useLayoutEffect or useInsertionEffect.
 ---
 
@@ -34,7 +34,7 @@ Owns **how React code is written** in Melodium. Load this before writing or revi
 - Derive values during render; do not mirror props or other state in `useState`.
 - Reset state when an identity changes with a `key`, not with an effect.
 - Use the URL as the source of truth for search, filters and shareable view state (`useSearchParams`).
-- Use `useState` for local UI state. Use `useReducer` when transitions are complex. Use a feature hook for server/Firestore state.
+- Use `useState` for local UI state. Use `useReducer` when transitions are complex. Use a feature hook for server/Firestore state. Feature-wide state lives in a Zustand store under `stores/*.store.ts`.
 - Use `useRef` for mutable values that do not trigger rendering. Do not use it as hidden state that the UI must react to.
 - Do not duplicate the same data in multiple state atoms. Pick one owner.
 
@@ -59,22 +59,22 @@ Do not use an effect for:
 - Resetting state when a prop changes.
 - One-time initialization that can be done during render or with a ref callback.
 
-For Firestore and Auth subscriptions, prefer `useSyncExternalStore` with a cached snapshot. See `references/state-and-data.md`.
+For Firestore subscriptions, prefer an external store with `useSyncExternalStore` and a cached snapshot. Auth state comes from the auth Zustand store through `useAuth`. See `references/state-and-data.md`.
 
 If approval is missing, **stop and ask**. Do not add the effect, do not add a row to `docs/decisions/effects.md`, and do not bypass the rule.
 
 ## Data and subscriptions
 
-- Auth state comes from the auth feature's public hook, not the Firebase client.
+- Auth state comes from the auth feature's public `useAuth`, not the Firebase client.
 - Firestore subscriptions come from feature hooks. Hooks call the feature `api/`; `api/` uses `@/shared/lib/firebase`.
-- A subscription hook must return a stable snapshot, expose loading/error state, and unsubscribe on teardown.
+- A subscription hook must expose a loading/error state and unsubscribe on teardown.
 - Do not fetch in a component. Use a feature hook or a route loader.
 - Search and filters run in the client over the user's library.
 - Transposition is a pure view operation. Compute it during render from the original ChordPro content; never persist it.
 
 ## Forms and UI
 
-- Forms use `react-hook-form` + Zod. Define the schema in the feature's `schemas/`.
+- Forms use `react-hook-form` + Zod. Define the schema in the feature's `lib/`.
 - Derive the form type from the schema with `z.infer`; do not duplicate the shape.
 - Show field errors inline in Spanish. Use sonner for transient success/error feedback.
 - Disable the submit button while the operation is pending and prevent duplicate submissions.
@@ -94,7 +94,8 @@ If approval is missing, **stop and ask**. Do not add the effect, do not add a ro
 
 - Test behavior, not implementation details.
 - Use React Testing Library queries by role, label or visible Spanish text.
-- Mock `@/shared/lib/firebase` in unit and component tests.
+- Tests live under `tests/`, mirroring `src/`; never next to the source. Read `melodium-testing`.
+- Mock `@/shared/lib/firebase` in application tests.
 - Test loading, empty, error and success states.
 - Test cleanup for any approved effect.
 - Test keyboard interaction for interactive UI.

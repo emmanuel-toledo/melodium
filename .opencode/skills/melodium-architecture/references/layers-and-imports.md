@@ -15,10 +15,9 @@ There are no platform exceptions. A feature must not import `src/app`; `src/shar
 The composition root:
 
 - App-level constants and configuration in `src/app/config`, which imports neither features nor Firebase.
-- Router and route guards.
-- Providers that compose feature providers.
-- Layouts and global styles.
-- `main.tsx` and `App.tsx`.
+- Router and route composition, including feature `<feature>Routes`.
+- App-level layouts and global styles.
+- `main.tsx` and the application bootstrap.
 
 It imports features only through their public API. It does not initialize Firebase, query Firestore, or hold domain logic. Feature composition happens in routes and providers, not in `src/app/config`.
 
@@ -26,11 +25,10 @@ It imports features only through their public API. It does not initialize Fireba
 
 An isolated domain module. A feature owns:
 
-- Its pages and components.
-- Its hooks and domain logic.
-- Its Zod schemas and types.
+- Its pages, components and one layout.
+- Its route module, hooks, stores and domain logic.
+- Its Zod schemas, types and interfaces.
 - Its Firestore collection paths, queries, converters and writes in `api/`.
-- Its provider, if the domain needs one.
 
 Only the root `index.ts` is public. A feature may import `shared` and the features allowed by the graph; it must not import `app`, another feature's internals, or create a cycle.
 
@@ -95,13 +93,14 @@ A feature may also import its own public API through `@/features/<feature>`, but
 
 ```ts
 // ✅ Correct
-import { AuthProvider } from '@/features/auth';
-import { CompositionsPage } from '@/features/compositions';
-import { Button } from '@/shared/ui/button';
+import { authRoutes, UserMenu } from '@/features/auth';
+import { compositionRoutes } from '@/features/compositions';
+import { Button } from '@/shared/components/ui/button';
 
 // ❌ Incorrect
 import { auth } from '@/shared/lib/firebase';
 import { useCompositions } from '@/features/compositions/hooks/use-compositions';
+import { LoginPage } from '@/features/auth/pages/login-page';
 ```
 
 `src/app` composes features; it does not access Firebase or feature internals.
@@ -111,7 +110,7 @@ import { useCompositions } from '@/features/compositions/hooks/use-compositions'
 ```ts
 // ✅ Correct: shared code imports external libraries or other shared modules
 import { clsx } from 'clsx';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/components/ui/button';
 
 // ❌ Incorrect: shared knows a feature or the app
 import { useAuth } from '@/features/auth';
@@ -121,7 +120,7 @@ import { ROUTES } from '@/app/routes';
 ## Public API rules
 
 1. The root `index.ts` is mandatory for every feature.
-2. Export only what another layer needs: pages, components, hooks, types and schemas.
+2. Export only what another layer needs: components, hooks, types and public contracts. Pages and route modules stay internal; the app composes `<feature>Routes`.
 3. Do not export internal API clients, converters or implementation helpers unless another feature genuinely needs them.
 4. If a consumer needs a missing export, decide:
    - Generic and domain-agnostic → move it to `shared`.
@@ -173,11 +172,12 @@ Type-only imports count as dependencies. If a type creates a cycle, move the sha
 
 ## Tests
 
-- Unit and component tests live next to the code as `*.test.ts(x)`.
-- Feature tests may import the feature's internals.
-- Integration tests between features use the public API.
-- Firestore rules tests live in `tests/rules/` and use the emulators.
-- Tests never depend on the network or a real Firebase project. Unit tests mock `@/shared/lib/firebase`.
+- Application tests live under `tests/`, mirroring `src/`: `tests/app`, `tests/shared`, `tests/features/<feature>`.
+- A feature test may import that feature's internals; cross-feature imports in tests use the public API only.
+- Firestore rules tests live in `tests/firestore-rules/` and use the emulators.
+- Tooling tests stay next to the script.
+- Tests never depend on the network or a real Firebase project. Application tests mock `@/shared/lib/firebase`.
+- Do not put `*.test.ts(x)` under `src/`.
 
 ## Common mistakes
 

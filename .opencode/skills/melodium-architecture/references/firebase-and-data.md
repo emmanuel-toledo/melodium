@@ -24,16 +24,16 @@ If a feature needs a Firebase function that is not re-exported yet, add it to th
 
 ## Feature data access
 
-Each feature owns its Firestore collection. Access belongs in its `api/` folder:
+Each feature owns its Firestore collection. Access belongs in its `api/` folder, and files end in `.api.ts`:
 
 ```text
 src/features/compositions/api/
-  compositions.ts       # collection path, queries, writes
-  converters.ts         # Firestore document <-> domain type
+  compositions-service.api.ts   # collection path, queries, writes
+  composition-mapper.ts         # Firestore document <-> domain type
 ```
 
 ```ts
-// src/features/compositions/api/compositions.ts
+// src/features/compositions/api/compositions-service.api.ts
 import {
   db,
   collection,
@@ -44,16 +44,16 @@ import {
   serverTimestamp,
 } from '@/shared/lib/firebase';
 
-import type { Composition, CompositionInput } from '../types/composition';
-import { compositionConverter } from './converters';
+import type { Composition, CompositionInput } from '../interfaces/composition.interface';
+import { toComposition } from '../lib/composition-mapper';
 
 const compositionsRef = (uid: string) =>
-  collection(db, 'users', uid, 'compositions').withConverter(compositionConverter);
+  collection(db, 'users', uid, 'compositions');
 
 export function subscribeToCompositions(uid: string, onNext: (items: Composition[]) => void) {
   const q = query(compositionsRef(uid), where('instrument', '==', 'guitar'));
   return onSnapshot(q, (snapshot) => {
-    onNext(snapshot.docs.map((doc) => doc.data()));
+    onNext(snapshot.docs.map((doc) => toComposition(doc.id, doc.data())));
   });
 }
 
@@ -68,10 +68,12 @@ export async function createComposition(uid: string, input: CompositionInput) {
 
 The exact API will be defined by the compositions spec. The important boundaries are:
 
-- `api/` imports from `@/shared/lib/firebase`.
-- `api/` owns collection paths and converters.
-- Hooks call `api/`; components call hooks.
-- Components never import Firebase or the shared Firebase client.
+- `api/` imports from `@/shared/lib/firebase` and nothing else from the SDK.
+- `api/` owns collection paths and mappers.
+- Stores live in `stores/*.store.ts`; hooks call `api/` and the store.
+- Components call hooks and never import Firebase or the shared Firebase client.
+
+The auth feature is the reference: `api/auth-service.api.ts` wraps Firebase Auth, `stores/auth.store.ts` holds the session and `hooks/use-auth.ts` selects from it.
 
 ## Ownership
 
@@ -111,7 +113,7 @@ users/{uid}/setlists/{setlistId}
 
 Rules:
 
-- Validate inputs with Zod at the boundary.
+- Validate inputs with Zod at the boundary; schemas live in `lib/`.
 - Derive types with `z.infer`.
 - Normalize tags to lowercase, trim them and remove duplicates.
 - Convert `Timestamp` to `Date` at display time.
@@ -138,9 +140,9 @@ Rules:
 
 ## Tests
 
-- Unit tests mock `@/shared/lib/firebase`.
+- Application tests mock `@/shared/lib/firebase`.
 - Component tests use feature hooks and mocked data; they never talk to a real project.
-- Firestore rules tests live in `tests/rules/` and use the emulators.
+- Firestore rules tests live in `tests/firestore-rules/` and use the emulators.
 - Rules are deny-by-default; only the owner reads and writes.
 - Test ownership, not just happy paths: a user must not read or write another user's documents.
 

@@ -1,5 +1,5 @@
 ---
-name: Melodium Architecture
+name: melodium-architecture
 description: Use when adding, moving, or reviewing modules, features, imports, Firebase access, environment configuration, tests placement, or public APIs in Melodium.
 ---
 
@@ -30,7 +30,7 @@ app → features → shared
 ## Current feature graph
 
 ```text
-app/routes, app/providers → auth, compositions, setlists
+app/routes → auth, compositions, setlists
 setlists → auth, compositions
 compositions → auth
 auth → no other feature
@@ -56,7 +56,7 @@ If the answer is ambiguous, stop and ask before moving code.
 
 1. Every feature has a root `index.ts`. It is the only public entry point.
 2. Cross-feature and app imports use the exact path `@/features/<feature>`. Never use `@/features/<feature>/components/...`, `.../hooks/...`, `.../index` or a relative path that crosses a feature boundary.
-3. The public API is minimal: export only pages, components, hooks, types and schemas that another layer actually needs. Do not export internal API clients or implementation details.
+3. The public API is minimal: export only the components, hooks, types and contracts another layer actually needs. Pages and route modules stay internal; the app composes `<feature>Routes`. Do not export internal API clients or implementation details.
 4. If a consumer needs something that is not exported, first decide whether it is generic enough for `shared`; otherwise export it explicitly from the owning feature.
 5. Only the feature root `index.ts` is a barrel. Do not add internal `index.ts` barrels: they hide cycles and create accidental public APIs.
 6. No cycles between features. If two features need each other, extract the common part to `shared` or redesign the split.
@@ -76,21 +76,24 @@ See `references/firebase-and-data.md` for the data-access pattern and ownership 
 
 ## Tests and naming
 
-- Unit and component tests live next to the code as `*.test.ts(x)`.
-- `tests/` is for setup, factories and Firestore rules tests.
-- Integration tests between features use the public API.
+- Application tests live under `tests/`, mirroring `src/`: `tests/app`, `tests/shared`, `tests/features/<feature>`.
+- Firestore rules tests live in `tests/firestore-rules/`; tooling tests stay next to their script.
+- Do not put `*.test.ts(x)` under `src/`.
+- A feature test may import its own internals; integration tests between features use the public API.
+- Read `melodium-testing` for the full layout and commands.
 - Files are `kebab-case`; component exports are `PascalCase`; hooks are `useSomething`; types are `PascalCase` without an `I` prefix; constants are `UPPER_SNAKE_CASE`; Firestore collections are plural.
+- Feature files use role suffixes: `.api.ts`, `.store.ts`, `.interface.ts`, `.type.ts`, `.layout.tsx`, `.router.tsx`.
 - Use `import type` for types and the `@/` alias for cross-layer imports.
 
 ## New feature
 
-Read `references/feature-checklist.md` before creating a feature. At minimum:
+Read `references/feature-checklist.md` before creating a feature, and `melodium-feature` for the canonical tree. At minimum:
 
 1. Approve the feature and its public API in a spec.
 2. Create `src/features/<feature>/index.ts`.
-3. Add only the internal folders the feature actually needs.
-4. Put Firestore access in `api/`, orchestration in `hooks/`, domain logic in `lib/`, and UI in `components/` or `pages/`.
-5. Add critical tests and update the spec, `tasks.md` and the feature graph.
+3. Add only the internal folders the feature actually needs; no `providers/` or `schemas/`.
+4. Put Firestore access in `api/`, Zustand stores in `stores/`, orchestration in `hooks/`, domain logic in `lib/`, and UI in `components/` or `pages/`.
+5. Add critical tests under `tests/features/<feature>/` and update the spec, `tasks.md` and the feature graph.
 6. Run `pnpm lint`, `pnpm typecheck`, `pnpm check:arch` and `pnpm verify`.
 
 ## Validation
