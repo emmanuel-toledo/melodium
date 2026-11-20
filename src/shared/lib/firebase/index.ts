@@ -8,6 +8,7 @@ export {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 export type { User as FirebaseUser } from 'firebase/auth';
 export {
