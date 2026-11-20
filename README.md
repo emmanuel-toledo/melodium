@@ -123,13 +123,36 @@ pnpm dev
 With `VITE_USE_FIREBASE_EMULATORS=true`, the Firebase facade connects both SDKs to these ports.
 The emulator state is in memory and is discarded when the process stops.
 
-## Tests
+## Authentication manual QA
 
-- Unit and component tests live next to the source as `*.test.ts` or `*.test.tsx` and use Vitest,
-  React Testing Library and jsdom. `tests/setup.ts` registers the DOM matchers and cleanup.
-- `pnpm test` excludes `tests/rules/**` and never needs an emulator.
-- Firestore rules tests live in `tests/rules/` and run with `pnpm test:rules`, which starts only the
-  Firestore emulator through `firebase emulators:exec`.
+Start the emulators and the dev server:
+
+```bash
+pnpm emulators
+pnpm dev
+```
+
+Then exercise the auth flows at <http://localhost:5173>:
+
+1. Register at `/register` with email, password and an optional display name. The session survives a
+   reload and the header shows the user menu.
+2. Sign in at `/login` with email/password and with the Google popup when Google is configured.
+3. Request a password reset at `/reset-password`; the Auth emulator prints the reset link to the
+   terminal. Open the link, choose a new password and sign in again.
+4. Sign out from the header; the session clears and the app navigates to `/login`.
+5. Visit `/login`, `/register` and `/reset-password` while authenticated; each redirects to `/`.
+6. Check keyboard navigation and the 320 px layout for every auth screen; there must be no horizontal
+   overflow.
+
+`pnpm verify` does not require emulators or network access; only `pnpm test:rules` needs Java.
+
+- Application tests live under `tests/`, mirroring `src/`: `tests/app`, `tests/shared` and
+  `tests/features/<feature>`. They use Vitest, React Testing Library and jsdom. `tests/setup.ts`
+  registers the DOM matchers and cleanup.
+- `pnpm test` excludes `tests/firestore-rules/**` and never needs an emulator.
+- Firestore rules tests live in `tests/firestore-rules/` and run with `pnpm test:rules`, which starts
+  only the Firestore emulator through `firebase emulators:exec`.
+- Tooling tests stay next to their script under `scripts/`.
 - Critical behavior must be covered: ChordPro parsing, transposition, Zod schemas, composition and
   setlist CRUD, and ownership rules. A change is not finished while its critical tests are missing
   or failing.
@@ -196,7 +219,10 @@ React effects are disabled by default. An approved `useEffect`, `useLayoutEffect
 │   ├── features/            # domain features (auth, compositions, setlists)
 │   └── shared/              # config, Firebase facade and UI primitives
 ├── tests/
-│   ├── rules/               # Firestore rules tests (emulator only)
+│   ├── app/                 # application tests mirroring src/app
+│   ├── shared/              # shared tests mirroring src/shared
+│   ├── features/            # feature tests mirroring src/features
+│   ├── firestore-rules/     # Firestore rules tests (emulator only)
 │   └── setup.ts             # Vitest and Testing Library setup
 ├── firebase.json            # emulator ports and Firestore rules/indexes
 ├── firestore.rules          # deny-by-default baseline
@@ -231,8 +257,8 @@ Use `pnpm env:setup`.
 ## Scope
 
 Implemented in `001-platform`: scaffold, tooling, application shell, Firebase facade, emulator
-configuration, architecture checker and test harnesses. Authentication, compositions and setlists
-arrive in their own specs and feature modules.
+configuration, architecture checker and test harnesses. Implemented in `002-auth`: Google and
+email/password authentication, session state, route guards and the auth feature.
 
 Deployment, CI, public sharing, tablature, audio, payments, offline/PWA, i18n and Cloud Functions
 are out of scope for the MVP. Deployment projects are not configured in this repository.
@@ -242,5 +268,6 @@ are out of scope for the MVP. Deployment projects are not configured in this rep
 - `docs/constitution.md`: non-negotiable project rules.
 - `docs/specs/000-capability-map.md`: module map and dependency order.
 - `docs/specs/001-platform/`: approved platform spec, plan and task checklist.
-- `docs/decisions/effects.md`: approved React effects registry.
+- `docs/specs/002-auth/`: approved auth spec, plan and task checklist.
+- `docs/decisions/feature-structure.md`: canonical feature tree and public API rules.
 - `AGENTS.md`: contributor and agent instructions.

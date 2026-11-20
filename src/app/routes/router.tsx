@@ -2,6 +2,7 @@ import { createBrowserRouter, isRouteErrorResponse, useRouteError } from 'react-
 import type { RouteObject } from 'react-router';
 
 import { RootLayout } from '@/app/layouts/root-layout';
+import { authRoutes } from '@/features/auth';
 import { HomePage } from '@/app/routes/home-page';
 import { NotFoundPage } from '@/app/routes/not-found-page';
 import { Button } from '@/shared/components/ui/button';
@@ -33,6 +34,10 @@ export const routes: RouteObject[] = [
       { path: '*', Component: NotFoundPage },
     ],
   },
+  ...authRoutes.map((route) => ({
+    ...route,
+    ErrorBoundary: RouteErrorBoundary,
+  })),
 ];
 
 export const router = createBrowserRouter(routes);
