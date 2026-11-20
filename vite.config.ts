@@ -17,7 +17,12 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
-    include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.mjs'],
-    exclude: ['**/node_modules/**', '**/dist/**', 'tests/rules/**', 'scripts/fixtures/**'],
+    include: ['tests/**/*.test.{ts,tsx}', 'scripts/**/*.test.mjs'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      'tests/firestore-rules/**',
+      'scripts/fixtures/**',
+    ],
   },
 });

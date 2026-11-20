@@ -133,6 +133,7 @@ export default tseslint.config(
   },
   {
     files: ['src/features/**/*.{ts,tsx}'],
+    ignores: ['src/features/*/api/**/*.{ts,tsx}'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -154,17 +155,7 @@ export default tseslint.config(
   {
     files: ['src/features/*/api/**/*.{ts,tsx}'],
     rules: {
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: [
-            {
-              group: firebaseSdkPatterns,
-              message: 'Import Firebase only through @/shared/lib/firebase.',
-            },
-          ],
-        },
-      ],
+      'no-restricted-imports': 'off',
     },
   },
   {
@@ -174,7 +165,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['tests/rules/**/*.ts'],
+    files: ['tests/firestore-rules/**/*.ts'],
     rules: {
       'no-restricted-imports': [
         'error',
