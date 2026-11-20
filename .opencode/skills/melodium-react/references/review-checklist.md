@@ -63,10 +63,11 @@ Use this before declaring a component, hook, form or UI change complete.
 ## Tests
 
 - [ ] Critical behavior has tests.
+- [ ] Tests live under `tests/`, mirroring `src/`; none under `src/`.
 - [ ] Tests use roles, labels or visible Spanish text.
-- [ ] Unit/component tests mock `@/shared/lib/firebase`.
+- [ ] Application tests mock `@/shared/lib/firebase`.
 - [ ] No test depends on the network or a real Firebase project.
-- [ ] Firestore rules tests were updated if rules changed.
+- [ ] Firestore rules tests were updated in `tests/firestore-rules/` if rules changed.
 
 ## Commands
 

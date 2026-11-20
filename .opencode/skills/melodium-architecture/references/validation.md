@@ -59,7 +59,8 @@ pnpm verify      # format:check + lint + typecheck + test + check:arch + build
 - [ ] `src/app/config` imports neither features nor Firebase.
 - [ ] Every `useEffect`/`useLayoutEffect`/`useInsertionEffect` has an approval row and an inline ID.
 - [ ] `docs/decisions/effects.md` has no stale rows.
-- [ ] Tests are colocated or under `tests/rules/`; integration tests use public APIs.
+- [ ] Tests live under `tests/`, mirroring `src/`; no `*.test.ts(x)` under `src/`.
+- [ ] Integration tests use public APIs; rules tests live in `tests/firestore-rules/`.
 - [ ] `pnpm verify` passes.
 
 ## When a check fails

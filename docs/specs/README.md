@@ -20,9 +20,17 @@ Do not implement from a Proposed or Superseded spec.
 | --- | ----------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------- |
 | 000 | [Capability map](./000-capability-map.md) | Approved    | Module boundaries, dependencies and build order.                                                     |
 | 001 | [Platform](./001-platform/spec.md)        | Shipped     | Vite, React, TypeScript, Tailwind/shadcn, tests, emulators, Firebase facade and architecture checks. |
-| 002 | Auth                                      | Not started | Google and email/password authentication, session state and route guards.                            |
+| 002 | [Auth](./002-auth/spec.md)                | Shipped     | Google and email/password authentication, session state and route guards.                            |
 | 003 | Compositions                              | Not started | ChordPro composition CRUD, tags, search, transposition and chord rendering.                          |
 | 004 | Setlists                                  | Not started | Ordered setlists, composition resolution and deletion cleanup.                                       |
+
+## Deltas
+
+Delta specs change a shipped spec without rewriting its history. They live next to the original and keep one change per file.
+
+| Delta                                                       | Applies to | Status   | Scope                                                                                |
+| ----------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------ |
+| [001-test-layout](./001-platform/deltas/001-test-layout.md) | 001        | Approved | Application tests move under `tests/`; rules tests move to `tests/firestore-rules/`. |
 
 ## Workflow
 
@@ -44,6 +52,8 @@ docs/specs/
     spec.md
     plan.md
     tasks.md
+    deltas/
+      NNN-<change>.md       # optional; only for shipped specs
 ```
 
 Module IDs are stable kebab-case names from the capability map. A shipped module gets a delta spec for later changes instead of rewriting its history.
@@ -53,5 +63,6 @@ Module IDs are stable kebab-case names from the capability map. A shipped module
 - `docs/constitution.md` overrides every spec.
 - `AGENTS.md` defines the always-on working rules.
 - `docs/decisions/effects.md` is the only place where React effects are approved.
+- Application tests live under `tests/`, mirroring `src/`; Firestore rules tests live in `tests/firestore-rules/`; tooling tests stay next to their script. No test file lives under `src/`.
 - `pnpm verify` is the mandatory gate; `pnpm test:rules` is required when rules or indexes change.
 - Feature public APIs are contracts: changing one requires a spec update.

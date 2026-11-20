@@ -1,11 +1,14 @@
 # Spec 001: Platform — V1
 
-Status: Approved
+Status: Shipped
 Version: 1.1
-Last updated: 2026-11-18
+Last updated: 2026-11-19
 Module id: `platform`
 Depends on: `000-capability-map` (Approved)
 Runtime feature edges: none
+
+> Test placement and harness paths are superseded by
+> [delta 001-test-layout](./deltas/001-test-layout.md). This spec's history is otherwise unchanged.
 
 ## 1. Objective
 
@@ -386,6 +389,8 @@ The map is fixed for V1. Later specs add their routes without changing existing 
 - Global CSS lives in `src/app/styles/globals.css` and imports Tailwind. Keep shadcn theme variables there.
 
 ## 9. Testing strategy
+
+> Superseded by [delta 001-test-layout](./deltas/001-test-layout.md): application tests live under `tests/`, rules tests under `tests/firestore-rules/`.
 
 - Unit and component tests live next to the source as `*.test.ts(x)`.
 - `tests/setup.ts` imports `@testing-library/jest-dom/vitest` and registers RTL cleanup for the explicit-import style.

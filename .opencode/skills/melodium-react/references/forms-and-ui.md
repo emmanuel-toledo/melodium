@@ -2,10 +2,10 @@
 
 ## Forms
 
-Use `react-hook-form` with a Zod schema from the feature's `schemas/`.
+Use `react-hook-form` with a Zod schema from the feature's `lib/`.
 
 ```ts
-// src/features/compositions/schemas/composition-schema.ts
+// src/features/compositions/lib/composition-schema.ts
 import { z } from 'zod';
 
 export const compositionSchema = z.object({
@@ -103,8 +103,9 @@ Do not render a blank screen while a subscription is starting.
 
 ## Tests
 
+- Tests live under `tests/features/<feature>/`, mirroring `src/`; never next to the source.
 - Test the form with React Testing Library: labels, errors, submit and pending state.
 - Test empty, loading and error states.
 - Test keyboard interaction for dialogs, menus and the chord sheet controls.
-- Mock the feature `api/` or the shared Firebase module; never use the network.
+- Mock the feature `api/` or `@/shared/lib/firebase`; never use the network.
 - Test the Spanish messages users see, not implementation details.

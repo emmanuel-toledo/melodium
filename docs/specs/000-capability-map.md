@@ -1,8 +1,8 @@
 # Capability Map: Melodium MVP
 
 Status: Approved
-Version: 1.0
-Last updated: 2026-11-18
+Version: 1.1
+Last updated: 2026-11-19
 
 This map defines the modules of the Melodium MVP, their boundaries and the order in which they are specified and built. It is deliberately small. Each module gets its own spec after this map is approved.
 
@@ -52,11 +52,10 @@ Does not provide:
 
 Provides:
 
-- Google and email/password sign-in.
-- Session store consumed through a public hook.
-- Public `AuthProvider`, `useAuth`, `RequireAuth` and `AuthUser` contract.
-- Sign-out and Spanish error mapping.
-- Route-guard integration points for the app router.
+- Google and email/password sign-in, registration, password reset and sign-out.
+- A non-persisted Zustand session store reconciled with Firebase Auth.
+- Public `initializeAuth`, `useAuth`, `authRoutes`, `RequireAuth`, `UserMenu` and the `AuthUser`, `AuthState`, `AuthStatus` and `SignUpResult` types.
+- Spanish error mapping and route-guard integration points for the app router.
 
 Owns the session only. It does not write compositions or setlists.
 
