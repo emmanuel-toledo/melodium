@@ -1,0 +1,17 @@
+export type AuthErrorCode =
+  | 'auth/invalid-email'
+  | 'auth/missing-password'
+  | 'auth/user-not-found'
+  | 'auth/wrong-password'
+  | 'auth/invalid-credential'
+  | 'auth/email-already-in-use'
+  | 'auth/weak-password'
+  | 'auth/too-many-requests'
+  | 'auth/popup-closed-by-user'
+  | 'auth/popup-blocked'
+  | 'auth/account-exists-with-different-credential'
+  | 'auth/operation-not-allowed'
+  | 'auth/user-disabled'
+  | 'auth/network-request-failed'
+  | 'auth/cancelled-popup-request'
+  | 'auth/unknown';
