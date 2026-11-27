@@ -76,4 +76,4 @@ For code review: `code-review`.
 
 - Port binding: host port 80 -> container port 5173 (Vite dev server).
 - Firebase config (VITE_FIREBASE_*) must be provided via environment; never commit secrets.
-- `.env` is gitignored; provide your own.
+- `.env` is gitignored; provide your own based on `app/.env.example` (placeholders `VITE_FIREBASE_*`).

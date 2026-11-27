@@ -1,14 +1,24 @@
 # Specs
 
-Especificaciones de la aplicación Melodium.
+Specifications for the Melodium application.
 
-## Convención de nombres
+## Convention
 
-- Un archivo por spec/feature: `NNN-slug.md` (ej. `001-chord-sheets.md`).
-- Numeración secuencial con ceros a la izquierda (3 dígitos).
-- El slug en kebab-case, descriptivo.
-- Cada spec debe incluir: objetivo, alcance, requisitos funcionales, no funcionales, criterios de aceptación.
+Each spec lives in its own folder under `specs/`:
 
-## Estado
+```
+specs/
+└── NNN-slug/
+    ├── spec.md   # the specification
+    ├── plan.md   # implementation plan
+    └── task.md   # task breakdown
+```
 
-Sin specs aún. La primera feature (chord sheets) queda pendiente de definir.
+- Folder name: `NNN-slug` (3-digit number + kebab-case slug), e.g. `001-login-mvp`.
+- `spec.md`: requirements, acceptance criteria, test plan.
+- `plan.md`: implementation plan (to be defined per spec).
+- `task.md`: task breakdown (to be defined per spec).
+
+## Status
+
+- `001-login-mvp` — Draft.
