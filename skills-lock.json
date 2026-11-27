@@ -1,0 +1,201 @@
+{
+  "version": 2,
+  "skills": {
+    "accessibility": {
+      "source": "addyosmani/web-quality-skills",
+      "commit": "afa8da942115f2961fdbfa80807ea0b232ff6c00",
+      "sourceType": "github",
+      "skillPath": "skills/accessibility/SKILL.md",
+      "computedHash": "c668809f5df57feb87cc06f1bc37fb340d1d92e26bacb6edbeab9258d22e76a5"
+    },
+    "ask-sonner": {
+      "source": "emilkowalski/skills",
+      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+      "sourceType": "github",
+      "skillPath": "skills/ask-sonner/SKILL.md",
+      "computedHash": "9e82788679f5f71c9e0686b66200565c3f4e47037a06b9d1e94567ed42361bbc"
+    },
+    "break-ui": {
+      "source": "emilkowalski/skills",
+      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+      "sourceType": "github",
+      "skillPath": "skills/break-ui/SKILL.md",
+      "computedHash": "f089f3663e197fb4e106249df70e815a96e3236520a2e1c0919d1694816baca8"
+    },
+    "code-review": {
+      "source": "mattpocock/skills",
+      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/code-review/SKILL.md",
+      "computedHash": "ce86b40a3d1648a0018b712f0c70704e6c2316b2a9b9e915ab116916a31273dc"
+    },
+    "firebase-auth-basics": {
+      "source": "firebase/agent-skills",
+      "commit": "99954a30898bb5ddc8152ee10e124dc3b4106bf7",
+      "sourceType": "github",
+      "skillPath": "skills/firebase-auth-basics/SKILL.md",
+      "computedHash": "3ef272cfc3d28b4dfff7d05a6eb6893d4882c97021bd8d721a12fe92ecd2a50e"
+    },
+    "firebase-basics": {
+      "source": "firebase/agent-skills",
+      "commit": "99954a30898bb5ddc8152ee10e124dc3b4106bf7",
+      "sourceType": "github",
+      "skillPath": "skills/firebase-basics/SKILL.md",
+      "computedHash": "13a496dfb9130cbb273e44f521e78106c2e59787af92d8c06eb225839d346bbf"
+    },
+    "firebase-security-rules-auditor": {
+      "source": "firebase/agent-skills",
+      "commit": "99954a30898bb5ddc8152ee10e124dc3b4106bf7",
+      "sourceType": "github",
+      "skillPath": "skills/firebase-security-rules-auditor/SKILL.md",
+      "computedHash": "19bc79ffbc43d2bdbeef28d8f093e7f33748b8ba155d021f7efde2618d7544c1"
+    },
+    "mobile-native": {
+      "source": "emilkowalski/skills",
+      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+      "sourceType": "github",
+      "skillPath": "skills/mobile-native/SKILL.md",
+      "computedHash": "2f55a258f185314d585cb6a3514a66c15e9cfc8cd45c936284c4fb7374603d7e"
+    },
+    "prototype": {
+      "source": "mattpocock/skills",
+      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/prototype/SKILL.md",
+      "computedHash": "1e3ba2202a5b77b8aa50bc4447432331d6e42590e53ec0935689662cfed199ca"
+    },
+    "react-a11y": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-a11y/SKILL.md",
+      "computedHash": "65b145e71202b8e27132148845d86eaac4052b75db58de43414fe02aecf8b642"
+    },
+    "react-architecture": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-architecture/SKILL.md",
+      "computedHash": "2796584d9dc23857e8793de9d9a2aba09d2a6e7f9f25974c7c399ef3c621dd81"
+    },
+    "react-conventions": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-conventions/SKILL.md",
+      "computedHash": "bb34760481af3dd0f7011544b4ac7ce9b3c59b24685839fd289bfb2facf9330f"
+    },
+    "react-data": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-data/SKILL.md",
+      "computedHash": "07c03ef7dd341fc54a6307acd4efd73de1df83ecd806effda1652fe30b7b35ac"
+    },
+    "react-effects": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-effects/SKILL.md",
+      "computedHash": "1fff516a5f4f602ea9a70b1eec5a4d1adcd6715223e8281b52d23a757f3d57b4"
+    },
+    "react-feature": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-feature/SKILL.md",
+      "computedHash": "6912609a4799fa52a51c63dd0df72aa3189b34197791cb8775945ccd18f33bf8"
+    },
+    "react-forms": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-forms/SKILL.md",
+      "computedHash": "622e1e21683548748ab853a2fc7d7224b91381ff1444338ec16ef0f1647822b9"
+    },
+    "react-performance": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-performance/SKILL.md",
+      "computedHash": "b96fd0eb1b15817d6caafc88cecfc544b5ec3da5de71d471b5a485fee3e7c7e0"
+    },
+    "react-routing": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-routing/SKILL.md",
+      "computedHash": "5c0e7ffe14632059e2b437b22ea82fc712b3eadae07664696bebb7337a70c705"
+    },
+    "react-shared": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-shared/SKILL.md",
+      "computedHash": "1f70f612341bf0801b52e3f989f3077a70862c57c374d716117a3d8f2282bfe9"
+    },
+    "react-stack": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-stack/SKILL.md",
+      "computedHash": "118ce71a5427e98bd7301a4ed4c2bda7fa50783923277bead9e87ed2ec22465d"
+    },
+    "react-testing": {
+      "source": "emmanuel-toledo/react-development-design",
+      "commit": "b44d58789693a9c5e6badd57e41e2d883f084f0b",
+      "sourceType": "github",
+      "skillPath": "skills/react-testing/SKILL.md",
+      "computedHash": "95203cb43b0ace177d863649285769582a43900f7ba717d84e53217d6a6fc0e4"
+    },
+    "review-animations": {
+      "source": "emilkowalski/skills",
+      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+      "sourceType": "github",
+      "skillPath": "skills/review-animations/SKILL.md",
+      "computedHash": "50f1de2394b88bb3433eca1e30da6866a4e310963d872a66af20ca77fd77f07d"
+    },
+    "shadcn": {
+      "source": "shadcn-ui/ui",
+      "commit": "0e5b2e621a9ee4cf6a604bbe6c5c0d5b70561eb4",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "388962d16c7a4f13aaeee0d8f128e50a87df8553d42ef7988c39c0e1c74a40e8"
+    },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "commit": "c96b5f6552dba32e4492307493ee613581430715",
+      "sourceType": "github",
+      "skillPath": "plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md",
+      "computedHash": "c807f0c9619e8c389879f55846c2e395956f1073ab6d01a93fbb30b340015ab1"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "7991ed4fbecdac23f47c1a40c243e00a212a9e7f3604db93959b3ae11dffe299"
+    },
+    "vite": {
+      "source": "antfu/skills",
+      "commit": "0ecc25a6dcc805074133f7315fb6965450c70990",
+      "sourceType": "github",
+      "skillPath": "skills/vite/SKILL.md",
+      "computedHash": "db9eea82d8bf6ce0f60a4a1d94a626c718df7d97160b5f1d5b150647e0c401b3"
+    },
+    "vitest": {
+      "source": "antfu/skills",
+      "commit": "0ecc25a6dcc805074133f7315fb6965450c70990",
+      "sourceType": "github",
+      "skillPath": "skills/vitest/SKILL.md",
+      "computedHash": "bd95e41d66d76da9008893c9bc48c30f0a68f352cd2b00017767f5e4c129501d"
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/webapp-testing/SKILL.md",
+      "computedHash": "48cd9a742a59250edec6db89cf081ef5465f365e2133f6d6c5e29c380b754b7d"
+    }
+  }
+}
