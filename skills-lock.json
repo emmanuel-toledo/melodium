@@ -22,6 +22,13 @@
       "skillPath": "skills/break-ui/SKILL.md",
       "computedHash": "f089f3663e197fb4e106249df70e815a96e3236520a2e1c0919d1694816baca8"
     },
+    "caveman-compress": {
+      "source": "JuliusBrussee/caveman",
+      "commit": "e74a11ccdb38b98d15c9f9545787c907dd15f0ab",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-compress/SKILL.md",
+      "computedHash": "fe66a5fe14b80da85b027dcefccf5618aa5cf84ec2c21b7b1e454c489618c259"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
@@ -56,6 +63,13 @@
       "sourceType": "github",
       "skillPath": "skills/mobile-native/SKILL.md",
       "computedHash": "2f55a258f185314d585cb6a3514a66c15e9cfc8cd45c936284c4fb7374603d7e"
+    },
+    "modern-web-guidance": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "commit": "2b4aa13a72dd47cd135b06ce5abfccd92e19b24f",
+      "sourceType": "github",
+      "skillPath": "skills/modern-web-guidance/SKILL.md",
+      "computedHash": "1a97aea5d1c5abbf1b7b022ae7a2833a014627f741ba3cbd8cb6249a3ab359db"
     },
     "prototype": {
       "source": "mattpocock/skills",
@@ -168,6 +182,13 @@
       "sourceType": "github",
       "skillPath": "plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md",
       "computedHash": "c807f0c9619e8c389879f55846c2e395956f1073ab6d01a93fbb30b340015ab1"
+    },
+    "using-superpowers": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/using-superpowers/SKILL.md",
+      "computedHash": "6a9104fac7e16c3cec2bc118943aefd331cac35b4cfabd427cea4dc16337c6a5"
     },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
