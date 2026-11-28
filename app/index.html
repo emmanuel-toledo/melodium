@@ -1,10 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>app</title>
+    <meta name="description" content="Melodium — Composiciones musicales en un solo lugar" />
+    <title>Melodium</title>
+    <script>
+      // Aplica el tema guardado antes del primer pintado para evitar parpadeo.
+      (function () {
+        try {
+          var stored = JSON.parse(localStorage.getItem('theme') || '{}')
+          var pref = stored && stored.state && stored.state.theme
+          var dark =
+            pref === 'dark' ||
+            (pref !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          var root = document.documentElement
+          root.classList.toggle('dark', dark)
+          root.style.colorScheme = dark ? 'dark' : 'light'
+        } catch (e) {
+          /* localStorage corrupto: se respeta el tema del sistema */
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

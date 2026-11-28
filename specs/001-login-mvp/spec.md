@@ -21,7 +21,7 @@ The login screen supports light/dark theme toggle (system default, persisted).
 - FR-3: Authenticated access to `/login` redirects to `/`.
 - FR-4: Login screen displays the app name "Melodium" and a creative tagline
   (Spanish): "Tu cuaderno de acordes, siempre contigo."
-- FR-5: A "Continue with Google" button triggers Firebase Google sign-in.
+- FR-5: A "Continuar con Google" button triggers Firebase Google sign-in.
 - FR-6: On successful sign-in, redirect to `/`.
 - FR-7: On sign-in failure, show an error message (Spanish) without leaking
   details. Canceling the popup is ignored silently (no error banner).
@@ -36,12 +36,23 @@ The login screen supports light/dark theme toggle (system default, persisted).
 - i18n: all user-facing text in Spanish.
 
 ## 5. UI/UX
-- Centered card layout, responsive (mobile-first).
+- Split-panel card centrada, responsive (mobile-first):
+  - **Panel izquierdo** (gradiente violeta, constante en ambos temas): lockup de
+    marca (ícono + "Melodium" + eyebrow "CUADERNO DE ACORDES"), titular display
+    ("Tu música, en un solo lugar."), subcopy, checklist de 3 beneficios con
+    checks circulares y tagline FR-4 al pie.
+  - **Panel derecho** (superficie neutra según tema): eyebrow "• INICIA SESIÓN",
+    heading "Bienvenido a Melodium", descripción, banner de error (español),
+    botón Google outlined ancho con ícono y nota de privacidad con candado.
+  - Bajo `lg` los paneles se apilan (marca arriba, acceso abajo); en `lg+` se
+    dividen en dos columnas (`1.05fr / 1fr`).
 - Brand name prominent; tagline beneath.
-- Google button with Google icon.
+- Google button with Google icon (outlined, ancho).
 - Theme toggle in top-right corner (RootLayout, global).
 - Loading state on the button during sign-in (button disabled).
 - Error banner (Spanish) on failure.
+- Decoración sutil: glow violeta detrás de la tarjeta y acordes tenues
+  (`Am7`, `Fmaj7`) en el panel de marca (decorativa, `aria-hidden`).
 - Design skills to apply: apple-design, frontend-design, shadcn, tailwind-design-system, break-ui, review-animations, mobile-native, ask-sonner.
 
 ## 6. Firebase Setup Checklist
@@ -70,7 +81,7 @@ The login screen supports light/dark theme toggle (system default, persisted).
 
 ## 9. Acceptance Criteria
 - AC-1: Visiting `/` while unauthenticated redirects to `/login`.
-- AC-2: Clicking "Continue with Google" opens Google popup and, on success,
+- AC-2: Clicking "Continuar con Google" opens Google popup and, on success,
   lands on `/`.
 - AC-3: On auth error (except cancellation), an error message in Spanish is
   shown.
