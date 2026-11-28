@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Secrets (keep .env.example)
+.env
+.env.local
+coverage
+test-results
+playwright-report
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
